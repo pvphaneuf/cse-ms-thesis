@@ -241,8 +241,25 @@
 %
 % ^.
 
-Adaptive Laboratory Evolution (ALE) experiment
-Include statement on academia and industry leveraging ALE.
+
+\begin{itemize}
+% \item Introduce Adaptive Laboratory Evolution (ALE) experiment
+% \item Include statement on academia and industry leveraging ALE.
+\item Motivation: Big Data of experimental evolution to Knowledge.
+\item Build and provide a resource that can contribute to the
+\begin{itemize}
+\item study of evolutionary dynamics
+\item discovery of novel gene functions
+\end{itemize}
+\item Thesis covers the fundamental work of starting this endeavor.
+\begin{itemize}
+\item Quality
+\item Consistency
+\item Compilation
+\item Accessibility
+\end{itemize}
+
+\end{itemize}
 
 \chapter{Motivation and Specific Aims}
 
@@ -350,23 +367,12 @@ ALE experiments often involve multiple experimentalists and collaborators. The i
 \section{Specific Aims}
 
 We defined a specific set of aims that would lead to solutions to these challenges. These aims are as follows:
-
 \subsection{Aim 1: Establish a Post-Processing Pipeline}
-
 To ensure the consistency of quality and format of ALE experiment results, we aim to research, test and deploy post-processing pipeline. This pipeline will take as input ALE experiment sample sequence data and return reports on each sample's mutation set with regards to a reference genome. Before the mutation reports are generated, reports on the sequencing data quality are generated and inspected; if necessary, measures are taken to improve the quality of the sequencing data.
-
-
-\subsection{Aim 2: Automate ALE Experiment Results Consolidation and Reporting}
-
-To reduce the effort in generating consistent ALE experiment mutation lineage reports that combine all appropriate ALE experiment samples, we aim to automate this effort by developing software to parse ALE experiment mutation reports and upload them to a database. This database will then be leveraged by a reporting application that will produce consistent mutation lineage reports.
-
+\subsection{Aim 2: Automate ALE Experiment Results Consolidation and Accessible Reporting}
+To reduce the effort in generating consistent ALE experiment mutation lineage reports that combine all appropriate ALE experiment samples, we aim to automate this effort by developing software to parse and database ALE experiment mutation data. This database will then be leveraged by a reporting application that will produce consistent mutation lineage reports. To address the challenge of results accessibility, the application used to generate ALE experiment reporting will be developed as a web application which can be shared with collaborators. This application will be able to present all available ALE experiment result reports.
 \subsection{Aim 3: Automate Common ALE Experiment Analysis}
-
 The many methods of identifying an ALE experiment's \textit{key mutations} will be defined and automated. Their results will be reported by the reporting application alongside the mutation lineage reports.
-
-\subsection{Aim 4: Enable More Accessible ALE Experiment Results}
-
-To address the challenge of results accessibility, the application used to generate ALE experiment reporting will be developed as a web application which can be shared with collaborators. This application will be able to present all available ALE experiment result reports.
 
 %The most immediate significant impact will be with building a software platform that will automate the organization and report generation for ALE experiments. SBRG researchers can spend weeks manually organizing mutational data in order to identify mutations \textit{significant} to the evolutions of a strain in an ALE experiment. This manual investigation is also prone to human error, where researchers may overlook \textit{significant} mutations. The resolution on the mutational information from an ALE experiment is also limited by the time cost for manually curating mutational lineages; automating this curation allows for researchers to incorporate more sample sequencing data into their investigation to establish more resolution on mutational trends in their experimental evolutions.
 
@@ -413,7 +419,7 @@ Besides the actual generation of mutation data, the key functionality of our pro
 
 The products of this thesis have been primarily driven by the need to consolidate and report on large amounts of ALE data in such a way to describe adaptive mutations in evolved strains. We have done so by leveraging a full stack of industry standard technologies that enable the parsing and databasing of experiment data and the generation of reports on said data.
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \caption{Illustration of the flow of ALE experiment data to the deployment of result report generation for end users.}
   \centering
   \includegraphics[width=0.7\textwidth]{deployment_diagram.png}
@@ -432,11 +438,11 @@ The ALE mutation database is leveraged by a web application to automate the gene
 %
 % ^.
 
-The ALE Analytics web platform enables and automates much of the analysis necessary for interpreting ALE experiment sequencing data. For this thesis, we primarily describe the automated mutation analysis and reporting features, though this platform additionally includes ALE mutation \textit{filtering}, mutation \textit{search}, experiment \textit{export} to CSV, experiment \textit{comparison}, sample sequencing data \textit{quality statistics} and database \textit{mutation statistics}. Of these, the feature with the most effect on this thesis' primary topics is the mutation \textit{filter}, which is used to ignore mutations rationalized as inappropriate, such as alignment artifacts and ALE starting strain mutations, from all automated analysis on a specific ALE experiment.
+The ALE Analytics web platform enables and automates much of the analysis necessary for interpreting ALE experiment sequencing data. For this thesis, we primarily describe the automated mutation analysis and reporting features, though this platform additionally includes ALE mutation \textit{filtering}, mutation \textit{search}, experiment \textit{export} to CSV, experiment \textit{comparison}, sample sequencing data \textit{quality statistics} and mutation database \textit{statistics}. Of these, the feature with the most effect on this thesis' primary topics is the mutation \textit{filter}, which is used to ignore mutations rationalized as inappropriate, such as alignment artifacts and ALE starting strain mutations, from all automated analysis on a specific ALE experiment.
 
-The fundamental feature for the ALE Analytics web platform is report generation. Each ALE experiment can be described as a series of samples which contain both new mutations and mutations from their ancestors relative to a reference genome. Ordering the samples as columns from earliest to latest in an ALE, where each row describes the manifestation of a specific mutation among samples, can serve as a visualization to grant intuition on mutational trends. The occurrence of a mutation in a sample is annotated as a value between 0 and 1 within the cell of a mutation row for the sample. The annotated value represents the estimated frequency of this mutation among sample population \cite{breseq_paper}. Among the many mutations that manifest within an ALE experiment, mutation rows that describe the alleles of a gene in the ALE experiment will cluster together due to the sorting of mutations according to position on the genome. Due to the chronological sorting of the sample columns per ALE, a mutation that fixes across samples will manifest as sequence cells in a mutation row annotated for the manifestation of a mutation. These patterns are obvious to an observer and serve well to describe the mutation trends in an ALE experiment.
+The fundamental feature for the ALE Analytics web platform is report generation. Each ALE experiment can be described as a series of samples which contain both new mutations and mutations from ancestors relative to a reference genome. Ordering the samples as columns from earliest to latest in an ALE, where each row describes the manifestation of a specific mutation among samples, can serve as a visualization to grant intuition on mutational trends. The occurrence of a mutation in a sample is annotated as a value between 0 and 1 within the cell of a mutation row for the sample. The annotated value represents the estimated frequency of this mutation among the sample population \cite{breseq_paper}. Among the many mutations that manifest within an ALE experiment, mutation rows that describe the alleles of a gene in the ALE experiment will cluster together due to the sorting of mutations according to position on the genome. Due to the chronological sorting of the sample columns per ALE, a mutation that fixes across samples will manifest as sequence of cells in a mutation row annotated for the manifestation of that mutation. These patterns are obvious to an observer and serve well to describe the mutation trends in an ALE experiment.
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \caption{Illustration of a mutation lineage report. The \textit{hns, tdk} intergenic mutation can be seen to fix over time course of samples. The multiple mutation rows describing an allele of the intergenic region \textit{ttdR, ttdA} cluster together.}
   \centering
   \includegraphics[width=1\textwidth]{mutation_lineage_report.png}
@@ -448,18 +454,18 @@ The fundamental feature for the ALE Analytics web platform is report generation.
 % TODO:  ensure that the following paragraph is appropriate and shouldn't be placed elsewhere. It could be used to describe the significance of the platform, which is appropriate for this section.
 %
 % ^.
-Before the ALE Analytics platform was deployed for use, ALE experimentalists would work to identify ALE experiment \textit{key mutations} by manually annotating all ALE experiment sample mutations within a spreadsheet and investigate for significant mutation patterns. The task of manual annotation of mutations proved to be time consuming and error-prone, causing delay of ALE experiment result interpretation. This initial bottleneck in the post-processing of ALE experiment results lead to the efforts that began the ALE Analytics project. The time cost of this manual curation additionally set an implicit limit on how many samples experimentalists were willing to sequence, therefore limiting the resolution on an ALE experiment's mutational trends. Additionally, the type of sample obtained from a flask was limited by the cost of manual curation according to the amount of mutations annotated per sample, where population samples can include an order of magnitude more mutations than clonal samples, therefore limiting the inclusion of population samples into an ALE experiment's output data set. The primary function of the ALE Analytics platform is to automate the annotation and reporting of all ALE Experiment sample mutations in a single location with a uniform format. This automated functionality enables experimentalists to more quickly interpret their data and include more sequenced samples into their mutation set, without fear of the effort necessary in consolidating their experiment's mutations. Alongside the \textit{ALE machine}, ALE Analytics further enables more resolution on evolution. This automation may additionally result in more  consistent reporting and accurate results since it removes the potential for human error in data consolidation and report generation.
+Before the ALE Analytics platform was deployed for use, ALE experimentalists would work to identify ALE experiment \textit{key mutations} by manually annotating all ALE experiment sample mutations within a spreadsheet and investigate for significant mutation patterns. The task of manual annotation of mutations proved to be time consuming and error-prone, causing delay of ALE experiment result interpretation. This initial bottleneck in the post-processing of ALE experiment results lead to the efforts that began the ALE Analytics project. The time cost of this manual curation additionally set an implicit limit on how many samples experimentalists were willing to sequence and process into their output data set, therefore potentially limiting the resolution on an ALE experiment's mutational trends. Additionally, the type of sample obtained from a flask was limited by the cost of manual curation according to the amount of mutations annotated per sample, where population samples can include an order of magnitude more mutations than clonal samples; this can therefore cause an experimentalist to limit the inclusion of population samples into an ALE experiment's output data set. The primary function of the ALE Analytics platform is to automate the annotation and reporting of all ALE Experiment sample mutations in a single location with a uniform format. This automated functionality enables experimentalists to more quickly interpret their data and include more sequenced samples into their mutation set, without fear of the effort necessary in processing and consolidating their experiment's mutations. Alongside the \textit{ALE machine}, ALE Analytics further enables more resolution on evolution. This automation may additionally result in more  consistent reporting and accurate results since it removes the potential for human error in data processing, consolidation and report generation.
 
 Since August 2015, the ALE Analytics web application has deployed a production version for experimentalists and collaborators to use in the analysis of their ALE experiments. Though we have many development versions that are launched and shutdown for testing and demonstrating new feature to target audience, our production version of ALE Analytics has constant uptime and is available online for access by local and remote experimentalists and collaborators. To end-users, ALE Analytics represents a web platform and database of experimental evolution results that is ubiquitously available and ever growing in features and content.
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \caption{Screenshot of the ALE Analytics dashboard containing counts of significant ALE details.}
   \centering
   \includegraphics[width=1\textwidth]{dashboard_screenshot.png}
   \label{fig:dashboard_screenshot}
 \end{figure}
 
-The current production deployment of ALE Analytics contains 14,358 observed mutations and 7,268 unique mutations. These mutations are housed in 41 separate ALE experiments with a total of 321 ALEs and 801 isolates or samples. This large volume of mutations and samples is evidence to how the the automation of consolidating ALE experiment data has been leveraged to create a substantial resource on experimental evolutions. Being that ALE Analytics is being leveraged in investigating current experiments, full access hasn't yet been made available to the public. The set of ALE experiments with published results will be made public on ALE Analytics in the near future.
+The current production deployment of ALE Analytics contains 14,358 observed mutations and 7,268 unique mutations. These mutations are housed in 41 separate ALE experiments with a total of 321 ALEs and 801 isolates or samples. This large volume of mutations and samples is evidence to how the the automation of consolidating ALE experiment data has been leveraged to create a substantial resource on experimental evolutions. Being that ALE Analytics is being leveraged in investigating current experiments, full access hasn't yet been made available to the public. Our intent is to ultimately make public on ALE Analytics the results of the ALE experiments that have been published.
 
 % * <pphaneuf@eng.ucsd.edu> 2016-10-20T17:06:22.581Z:
 % 
@@ -469,8 +475,6 @@ The current production deployment of ALE Analytics contains 14,358 observed muta
 % 3) population samples rather than clonal samples
 % 
 % ^.
-
-
 \chapter{Aim 3: Automate Common ALE Experiment Analysis}
 
 Using the ALE Analytics mutation reporting mechanism, we've implemented features that find and report mutations which describe significant mutation patterns within an ALE experiment. These feature describe the significant mutation patterns as \textit{enrichment} and/or \textit{fixed} mutations. The methodologies encapsulated in the \textit{enrichment} and \textit{fixed} mutation analysis are those which have been developed to manually identify \textit{key mutations} within the results of publish ALE experiments (\cite{10.1371/journal.pgen.1001186}, \cite{pmid25015645}, \cite{pmid26964043}, \cite{pmid25304508}) and are therefore considered common ALE experiment analysis. As with the manual consolidation of ALE experiment mutations, the analysis of \textit{key mutations} can be prone to human error, inconsistent between researchers and time consuming. The automation of these common analysis will contribute to more accurate results, more consistent analysis and the shortening of turnaround time from ALE experiment execution to results interpretation.
@@ -572,7 +576,6 @@ In establishing our classification evaluation metrics, we observe that there are
 \end{figure}
 
 We demonstrate this imbalance in Figure\ref{fig:class_imbalance_table}. All but the \textit{PGI ALE experiment} have an obvious class imbalance. Relying on accuracy alone to measure classification performance with a class imbalance can be misleading since one could naively classify all mutations as the majority class of the imbalance and still obtain a high accuracy. We consider avoiding the exclusion of \textit{significant} mutations from our results as our highest priority; in other words, we consider \textit{recall} as our primary performance metric. In performing with high \textit{recall}, we can better ensure that all \textit{key mutations} are returned in our results, therefore providing the best identification of all significant genomic regions in an experimental evolution. Avoiding \textit{insignificant mutations} in our results is of secondary importance since they can be later excluded by secondary manual investigations performed by the experimentalist. We will use \textit{precision} as the metric to evaluate our approach's ability to avoid \textit{insignificant} mutations in our results.
-
 \subsubsection{PGI ALE Experiment}
 % * <pphaneuf@eng.ucsd.edu> 2016-08-13T20:14:33.404Z:
 %
@@ -622,13 +625,12 @@ The ALE Analytics \textit{enrichment} mutation analysis found 4 additional possi
   \includegraphics[width=\textwidth]{pgi_new_enrichment_muts.png}
   \label{fig:pgi_new_enrichment_muts}
 \end{figure}
+No fixed mutations can be established with the \textit{PGI} ALE experiment data set since all samples are endpoints of different ALEs and therefore do not provide any mutation time-course information for the \textit{fixed} mutation analysis to work with.
 \begin{figure}[H]
   \centering
   \caption{\textit{PGI} ALE experiment classification results.}
   \includegraphics[width=0.6\textwidth]{pgi_precision_recall.png}
 \end{figure}
-
-No fixed mutations can be established with the \textit{PGI} ALE experiment data set since all samples are endpoints of different ALEs and therefore do not provide any mutation time-course information for the \textit{fixed} mutation analysis to work with.
 \subsubsection{42C ALE Experiment}
 The \textit{42C} ALE experiment and publication focused on the observed adaptive mutations selected for during an experimental evolution with a selective pressure of a sample temperature of 42$^{\circ}$C. The experiment executed 10 parallel ALEs on replicates of \textit{E. coli K-12 MG1655} for 45 days in minimal media. Clones were taken from each ALE's final flask, sequenced using the Illumina MiSeq platform and their mutations defined using whole genome re-sequencing with the \textit{Breseq} 0.22 software pipeline against the \textit{E. coli K-12 MG1655} reference genome (NCBI accession NC\_000913.2) \cite{pmid25015645}.
 
@@ -650,17 +652,16 @@ The ALE Analytics \textit{enrichment key mutation} analysis finds all 14 of the 
 
 The ALE Analytics \textit{enrichment} mutation analysis finds 22 additional genomic regions affected by more than 1 mutation. The \textit{mutL} and \textit{dnaA} mutations mentioned by the paper as the cause for ALE 2, 3, 6 and 8 endpoints to become hypermutators were included in the automated analysis' \textit{enrichment key mutations}. The paper does not include these in their table of \textit{key mutations}, though do attribute describe their importance; we therefore do not consider the \textit{mutL} and \textit{dnaA} mutations as false positives.
 
-\begin{figure}[H]
-  \centering
-   \caption{\textit{42C} ALE experiment classification results.}
-  \includegraphics[width=0.5\textwidth]{42c_precision_recall.png}
-\end{figure}
-
 These 22 additional genomic regions of interest only manifest in the ALEs that have been identified by the authors as being overcome by the same hypermutator strain except for the \textit{yjiT} alleles. \textit{yjiT} was mutated in the ALE 3 and 6 endpoints, hypermutators of separate origins, and therefore make it a candidate for an appropriate \textit{key mutation}. If the exclusion of the \textit{yjiT} mutations in the author's \textit{key mutation} set may have been an oversight in their manual workflow; the automated \textit{enrichment key mutation} analysis will reduce the possibility for these errors with its future usage. If our evaluation were to exclude hypermutator mutations from both the published significant mutations list and our results, both the subsets of the non-hypermutator published and automated analysis \textit{key mutations} would match without any additionally \textit{key mutations} mutations. 
 
 The obvious contamination made clear by the amount of hypermutator mutations in contaminated strains lends us intuition on how to automate the identification of contamination among samples. When a sample contains the exact same \textit{point mutations} as a sample from another ALE, contamination has likely occurred.
 
 No fixed mutations can be established with the \textit{42C} ALE experiment data set since all samples are endpoints of different ALEs and therefore do not provide any mutation time-course information for the \textit{fixed} mutation analysis to work with.
+\begin{figure}[H]
+  \centering
+   \caption{\textit{42C} ALE experiment classification results.}
+  \includegraphics[width=0.5\textwidth]{42c_precision_recall.png}
+\end{figure}
 \subsubsection{C13 ALE Experiment}
 The C13 ALE experiment and publication focused on the observed adaptive mutations selected for during an experimental evolution using \textsuperscript{13}C-glucose as a carbon source for \textit{E. coli} growth. The \textit{key mutations} found by this experiment were compared to those of \cite{pmid25304508}, which uses \textsuperscript{12}C-glucose, to investigate if there is any evidence of differing adaptations and therefore additional metabolic stress from using the \textsuperscript{13}C-glucose isotope. The experiment executed 6 parallel ALEs  on replicates of \textit{E. coli K-12 MG1655} for approximately 1000 generations per ALE. Two clonal samples were taken from each ALE; one sample served as a midpoint clone and the other as the endpoint clone. The clones were sequenced using the Illumina MiSeq platform and their mutations defined using whole genome re-sequencing with the \textit{Breseq} 0.23 software pipeline against the \textit{E. coli K-12 MG1655} reference genome (NCBI accession NC\_000913.2).
 
@@ -675,14 +676,12 @@ The ALE Analytics \textit{enrichment} mutation analysis found 1 additional possi
 
 The ALE Analytics \textit{fixed key mutation} analysis finds 2 of the 4 published \textit{key mutations} alleles. Those \textit{key mutations} missed were due to only manifesting in endpoint samples taken for the ALE experiment. If the C13 ALE experiment had more midpoint samples, the fixing of these mutations may be more evident and would ultimately be captured by the \textit{fixed key mutation} analysis. Significant mutations should ultimately be all caught by the \textit{fixed key mutation} analysis with enough samples, though the question that remains is how many samples from an ALE are adequate to provide enough resolution on mutation lineages to capture all fixing mutations.
 %\todo{(Could speak towards incorporating fitness growth data in future iterations to appropriately understand the necessary sample resolution for capturing sufficient mutation lineage information for fixations.)}
-
 \begin{figure}[H]
-  \caption{\textit{C13} ALE experiment {key mutation} genomic region matching summary between the paper and the ALE Analytics automated {enrichment} and \textit{fixed key mutation} analysis.}
+  \caption{\textit{C13} ALE experiment {key mutation} genomic region matching summary between the paper and the ALE Analytics automated \textit{enrichment} and \textit{fixed key mutation} analysis.}
   \centering
   \includegraphics[width=0.4\textwidth]{c13_key_mutation_regions.png}
   \label{fig:}
 \end{figure}
-
 \begin{figure}[H]
   \centering
    \caption{\textit{C13} ALE experiment classification results.}
@@ -696,47 +695,33 @@ The ALE Analytics \textit{fixed key mutation} analysis finds 2 of the 4 publishe
 % ^.
 The GLU ALE experiment and publication focused on establishing and leveraging novel ALE methods and observing the adaptive mutations selected for using these ALE methods and \textit{E. coli} on glucose minimal media at 37$^{\circ}$C. This experiment isolated the selection pressure to the growth rate of the strain by propagating batch cultures to new flasks during their exponential growth phase rather than the stationary growth phase; this avoids the fixation of mutations that grant fitness to attributes other than growth rates. The experiment executed 8 parallel ALEs on replicates of \textit{E. coli K-12 MG1655}, capturing samples from both the final and intermediate ALE flasks for whole genome sequencing with the Illumina MiSeq platform and re-sequencing using the \textit{Breseq} 0.23 software pipeline against the \textit{E. coli K-12 MG1655} reference genome (NCBI accession NC\_000913.2).
 
-The authors employed two strategies for identifying \textit{key mutations}. The first was to find genomic regions that were mutated in multiple ALEs and the second was to find genomic regions that hosted multiple mutations within the same ALE. The ALE Analytics \textit{enrichment key mutation} analysis finds all 8 of the genomic regions affected by the published \textit{key mutations}.
-
-The ALE Analytics \textit{enrichment} mutation analysis found 15 additional possible \textit{significant} genomic regions described in \ref{fig:GLU_new_enrich_muts} due to their allele frequency. Though these new \textit{enriched} genomic regions contributed to the lessening of the \textit{enrichment} analysis' precision metric, they present an opportunity for identifying further \textit{significant} adaptions not caught by the authors.
-
-\begin{table}[h!]
-\centering
-\begin{tabular}{ l r }
-  \textbf{recall} & 1 \\
-  \textbf{precision} & 0.347826087 \\
-\end{tabular}
-\end{table}
-
-\begin{figure}[h!]
-  \caption{new \textit{fixation} mutations.}
+The authors employed two strategies for identifying \textit{key mutations}. The first was to find genomic regions that were mutated in the endpoint of multiple ALEs.
+The second was to identify genomic regions within an ALE that experienced the replacement of one mutation with another; both mutations involved were considered \textit{key mutations}.
+\begin{figure}[H]
+  \caption{A combination of the new \textit{enrichment} and \textit{fixation key mutations}. The only difference between the two sets is that the \textit{fixation key mutation} set does not include the \textit{wecA} alleles.}
   \centering
-  \includegraphics[width=\textwidth]{GLU_new_enrich_muts.png}
-  \label{fig:GLU_new_enrich_muts}
+  \includegraphics[width=\textwidth]{glu_new_enrich_fix_muts.png}
+  \label{fig:glu_new_enrich_fix_muts}
+\end{figure}
+The ALE Analytics \textit{enrichment key mutation} analysis finds all 8 of the genomic regions affected by the published \textit{key mutations}. This analysis also finds 15 additional possible significant genomic regions described in \ref{fig:glu_new_enrich_fix_muts} due to the frequency in which a mutation reoccurs within an ALE. The ALE Analytics \textit{fixed key mutation} analysis finds 14 unpublished \textit{key mutations}. These \textit{fixed} mutations are the same as the set of unpublished \textit{enrichment} alleles found with the \textit{enrichment} analysis with the exception of \textit{wecA}. With the exception of the \textit{wecA} alleles, these mutations were not published by the authors as being significant since they did not exhibit the criteria of mutating the same genomic region in more than one ALE or replacing a mutation within an ALE. Though these new \textit{key mutation} genomic regions contributed to the lessening of the \textit{enrichment} and \textit{fixed key mutation} analysis' precision metric, they present an opportunity for identifying further \textit{significant} adaptions not caught by the authors.
+\begin{figure}[H]
+  \caption{\textit{GLU} ALE experiment {key mutation} genomic region matching summary between the paper and the ALE Analytics automated \textit{enrichment} and \textit{fixed key mutation} analysis.}
+  \centering
+  \includegraphics[width=0.4\textwidth]{glu_key_mutation_regions.png}
+  \label{fig:}
+\end{figure}
+\begin{figure}[H]
+  \centering
+   \caption{\textit{GLU} ALE experiment classification results.}
+  \includegraphics[width=0.5\textwidth]{c13_precision_recall.png}
 \end{figure}
 
-The ALE Analytics \textit{fixation} finds 14 unpublished \textit{fixed key mutations}. These \textit{fixed} mutations are the same as the set of unpublished \textit{enrichment} alleles found with the \textit{enrichment} analysis with the exception of \textit{wecA}.
-
-\begin{table}[h!]
-\centering
-\begin{tabular}{ l r }
-  \textbf{recall} & 0.875 \\
-  \textbf{precision} & 0.3333333333 \\
-\end{tabular}
-\end{table}
-
-\chapter{Aim 4: Enable More Accessible ALE Experiment Results}
-\section{}
-Potential for a subset of ALE experiment results to be released or accessible as a public resource.
-
 \chapter{Discussion}
-
 % * <pphaneuf@eng.ucsd.edu> 2016-10-11T04:04:04.439Z:
 %
 % the Fixating Mutations analysis is more likely to find fitness causal mutations due to it's filtering for mutations that have been obviously selected for.
 %
 % ^.
-
 % * <pphaneuf@eng.ucsd.edu> 2016-08-13T23:22:12.398Z:
 %
 % "A persistent challenge and goal in ALE experiments is differentiating between causal mutations and genetic hitch-hikers. 57% (30 of 53) of all mutations persisted in every subsequent clone examined until the experiment ended (mutations only observed in the last clone examined for each experiment were not considered)." -GLU 
@@ -746,89 +731,17 @@ Potential for a subset of ALE experiment results to be released or accessible as
 % This is why we need more than 1 method of identifying key mutations.
 %
 % ^.
-
 % * <pphaneuf@eng.ucsd.edu> 2016-10-11T02:20:54.338Z:
 %
 % The fixating mutations analysis possibly returns a more refined list of key mutations due to its design of focusing on a particular mutational pattern, though this analysis can't differentiate between fixating mutations selected for their fitness benefits and hitchhiking mutations.
 %
 % ^.
-
 % * <pphaneuf@eng.ucsd.edu> 2016-10-18T21:50:21.977Z:
 %
 % Target: ALE Mutation Database, Inputs: ALE experiment mutations, ALE experiment metadata, ALE experiment duplications.
 %
 % ^.
-
-A significant result of the consolidation of ALE experiment results and reporting is that one can easily compare the results of multiple ALE experiments and search for mutational trends among all ALE experiments.
-
-\section{Shared Enrichment and Fixated Mutations}
-% We investigate if ALE Analytics features are able to find novel perspectives on the \textit{key mutations} by leveraging the the fact that all ALE experiments are unified within one database and investigate if ALE experiments share any \textit{key mutations}. 
-Shared \textit{enrichment} and \textit{fixating} leverages the nature of the ALE Analytics platform to automate the identifying of genomic regions shared across all ALE Experiments that contain \textit{enriched} or \textit{fixating} alleles. In this section, we present the shared \textit{enrichment} and \textit{fixating} alleles and their mutations and elaborate on their significance.
-
-% * <pphaneuf@eng.ucsd.edu> 2016-10-11T16:26:33.158Z:
-%
-% Also speak towards the metadata comparison possible.
-%
-% ^.
-
-The PGI ALE experiment shared one significantly enriched genomic region with the other ALE experiments of this dataset: the \textit{rph} gene and it's upstream intergenic region with \textit{pyrE}. The \textit{rph} \textit{enrichment} alleles were shared among all of the ALE Experiments within this dataset: \textit{PGI}, \textit{C13}, \textit{42C} and \textit{GLU}. 
-
-\begin{figure}[h!]
-  \caption{Shared \textit{rph} \textit{enrichment} mutations.}
-  \centering
-  \includegraphics[width=\textwidth]{rph_pyrE_shared_enrich_mut.png}
-  \label{fig:rph_pyrE_shared_enrich_mut}
-\end{figure}
-
-The meta data for the samples involved with the shared \textit{rph} enrichment show us that each experiment shares a parent strain yet differ by a single feature. Besides the GLU project, these differing features describe the selection pressure on the experiments, therefore each ALE experiment sharing the \textit{rph} enrichment theoretically involves a different selection pressure. We can therefore conclude from the comparison of experimental conditions through the experiment meta data that the enrichment of \textit{rph} is a general optimization that the parent strain of these experiments can obtain when under any pressure.
-
-\begin{figure}[h!]
-  \caption{Shared \textit{pykF} \textit{enrichment} mutations.}
-  \centering
-  \includegraphics[width=\textwidth]{pykF_shared_enrich_mut.png}
-  \label{fig:pykF_shared_enrich_mut}
-\end{figure}
-
-\begin{figure}[h!]
-  \caption{Shared \textit{hns/tdk} \textit{enrichment} mutations.}
-  \centering
-  \includegraphics[width=\textwidth]{hns_tdk_shared_enrich_mut.png}
-  \label{fig:hns_tdk_shared_enrich_mut}
-\end{figure}
-
-\begin{figure}[h!]
-  \caption{Shared \textit{rpoB} \textit{enrichment} mutations.}
-  \centering
-  \includegraphics[width=\textwidth]{rpoB_shared_enrich_mut.png}
-  \label{fig:rpoB_shared_enrich_mut}
-\end{figure}
-
-\begin{figure}[h!]
-  \caption{Shared \textit{rpoC} \textit{enrichment} mutations.}
-  \centering
-  \includegraphics[width=\textwidth]{rpoC_shared_enrich_mut.png}
-  \label{fig:rpoC_shared_enrich_mut}
-\end{figure}
-
-\begin{figure}[h!]
-  \caption{Shared \textit{fixating} \textit{rpoB} alleles.}
-  \centering
-  \includegraphics[width=\textwidth]{shared_fixating_rpoB.png}
-  \label{fig:shared_fixating_rpoB}
-\end{figure}
-
-\begin{figure}[h!]
-  \caption{Shared \textit{fixating} \textit{rph} and \textit{rph/pyrE} alleles.}
-  \centering
-  \includegraphics[width=\textwidth]{shared_fixating_rph-pyrE.png}
-  \label{fig:shared_fixating_rph-pyrE}
-\end{figure}
-
-Throughout the entire ALE experiment database, only two \textit{fixating} alleles were shared among multiple experiments, show in Figures \ref{fig:shared_fixating_rpoB} and \ref{fig:shared_fixating_rph-pyrE}. All of the shared \textit{fixating} alleles were between the C13 and GLU ALE experiments. The GLU and C13 ALE experiments were in fact very similar in that the experiments were designed to select for growth rate, where C13 only differed in the isotope of the carbon source provided. These shared fixations therefore confirm the conclusion of the C13, that the C13 carbon source does not significantly affect the host metabolism and therefore enabled the evolutions of the C13 and GLU experiment to follow a significantly similar track.
-
-\chapter{Summary and Conclusion}
-
-%This type of reporting has been automated in ALE Analytics as the \textit{Mutations} report. This automated report generation along with automated analysis implemented within this platform can save experimentalists weeks of time in manually organizing mutational data and avoid human error in finding significant mutations. Additionally, experimentalists can now expand their ALE experiment sample sets to gain higher mutational resolution in their evolutions beyond any previous limit imposed by the time necessary to organize such data.
+\section{Key Mutation Analysis}
 
 % * <pphaneuf@eng.ucsd.edu> 2016-08-15T03:48:44.482Z:
 %
@@ -839,16 +752,78 @@ Throughout the entire ALE experiment database, only two \textit{fixating} allele
 % This is detailed in the GLU paper.
 %
 % ^.
-% * <pphaneuf@eng.ucsd.edu> 2016-08-15T16:20:43.689Z:
-%
-% Talk about the fixating mutation acsending filter, though currently is broken.
-%
-% ^.
-% * <pphaneuf@eng.ucsd.edu> 2016-09-02T17:49:47.719Z:
-%
-% Conclusion of paper was how similar the key mutations are between the ALEs of this experiment and that of GLU. The evaluation for this paper can therefore have 2 stages, (1) ensuring we're picking up on the same mutations as those called out within the C13 paper, (2) compare the key mutations found (fixated or enriched) between GLU and C13 and describe the matching ALE Analytics key mutations between  both projects.
-%
-% ^.
+The criteria we've based the implementation of our automated analysis aims to distill the multiple methods published in identifying \textit{key mutations}, though each of these published methods make no guarantee of including all significant mutations or excluding artifacts such as hitchhiker mutations. A successful \textit{key mutation} analysis will ultimately leverage multiple factors to judge a mutation's significance in an ALE experiment. Additional factors to those we've implemented in this thesis would be the probabilistic significance, or p-value, of mutations according to the reference genome. In executing an evolution, the ALE Machine must track the growth rate of sample; the compilation of these growth rates contain vital fitness data for the experiment, such as during what which sample was there a jump in the growth rate. Mutations in a population that occurred immediately before the growth rate jump and gained dominance after the jump are likely candidates for \textit{key mutations}. This fitness data can be integrated into \textit{key mutation} analysis to serve as an additional dimension in judging the significance of a mutation \cite{pmid25304508}. Mutations can also be evaluated according to if their host gene is functionally similar to other mutated genes or is associated with the selection pressure such as experimental conditions or initial perturbations. This list of factors ultimately describe the many dimensions that can be further incorporated into automatically evaluating whether a mutation is strongly correlated to the selection pressures of an evolution.
+
+The \textit{enrichment key mutation} analysis rendered the best classification results for this thesis; this was likely due to the small amount of samples per ALE with the ALE experiments used in the evaluation. Future ALE experiments may be enabled by ALE Analytics to incorporate more samples per ALE, with each sample being a population rather than clone. In general, more samples would grant more data points in the time-course of an evolution, allowing for more mutation data to describe the evolution. If these samples were populations, our analysis would be able to investigate the population dynamics of evolutions and track not only the consensus mutations but the balance of mutations found in only subsets of the entire population. This higher resolution of samples would enable the \textit{fixed key mutation} analysis to have a higher probability of finding \textit{fixed mutation} patterns. The \textit{enrichment key mutation} analysis may ultimately be identifying mutations that, with more samples, would be identified with \textit{fixed key mutation} analysis. The \textit{fixed key mutation} analysis is more clear and intuitive in its intent in describing as to why a mutation may be significant, which is an advantage that the \textit{enrichment} mutational pattern analysis lacks.
+
+An important high-level point this thesis makes is an argument for more population samples per evolution. Before the work of this thesis, the decision on the sample count to sequence per ALE was based on investigating the genotypes of endpoint samples. Now that we have tools to quickly process a previously infeasible volume of samples, we have the opportunity to investigate new strategies in identifying key mutations and exploring population dynamics within experimental evolutions.
+\section{Shared Enrichment and Fixated Mutations}
+% We investigate if ALE Analytics features are able to find novel perspectives on the \textit{key mutations} by leveraging the the fact that all ALE experiments are unified within one database and investigate if ALE experiments share any \textit{key mutations}. 
+A significant result of the consolidation of ALE experiment results and reporting is that one can easily compare the results of multiple ALE experiments and search for mutational trends among all ALE experiments. We have automated this task for the \textit{enrichment} and \textit{fixed key mutations}. \textit{Shared enrichment} and \textit{fixed key mutations} leverages the nature of the ALE Analytics platform to automate the identifying of genomic regions shared across all ALE Experiments that contain \textit{enrichment} or \textit{fixed} mutations. In this section, we present the shared \textit{enrichment} and \textit{fixed} mutations and elaborate on their significance.% We additionally incorporated population samples from the \textit{GLU} ALE experiment; these samples were not previously considered in any of our analysis due to their exclusion from the published material's \textit{key mutation} analysis.
+\begin{figure}[H]
+  \caption{\textit{Shared enrichment} and \textit{fixed mutation}genomic regions among all ALE experiments evaluated.}
+  \centering
+  \includegraphics[width=0.4\textwidth]{shared_enrichment_fixed_genomic_regions.png}
+  \label{fig:shared_enrichment_fixed_genomic_regions}
+\end{figure}
+\textit{rph} was host to \textit{enrichment} and \textit{fixed key mutations} in all ALE experiments used in our evaluation. The meta data for the samples hosting these \textit{key mutations} shows us that each experiment shares a parent strain yet differ by a single feature. Besides the GLU project, these differing features describe the selection pressure on the experiments, therefore each ALE experiment sharing the \textit{rph} enrichment theoretically involves a different selection pressure. We can therefore conclude from the comparison of experimental conditions through the experiment meta data that the enrichment of \textit{rph} is a general optimization that the parent strain of these experiments can obtain when under any pressure. The \textit{rph} mutations seen in these ALE experiments are in fact thought to help manage a specific defect in the K-12 E. coli strain in which the starting strain for these ALE experiments derive from\cite{Conrad2009}.
+
+The \textit{hns-tdk} intergenic region was the second most mutated among all \textit{enrichment} mutations. This region along, with \textit{rpoB} and \textit{rpoC}, has been associated with global transcriptional regulation. Mutating these genes in some manner may have rendered a population fitness according to changes in transcription levels beneficial to growth rate \cite{Kobayashi01011990, AYERS1989749, Cheng2014, Wang1445}. The \textit{GLU} and \textit{C13} ALE experiments sharing the \textit{rpoB} \textit{enrichment} and \textit{fixed mutations} were in fact very similar in that the experiments were designed to select for growth rate, where C13 only differed in the isotope of the carbon source provided. These shared mutated key genomic regions therefore confirm the conclusion of the \cite{pmid26964043}, that the C13 carbon source does not significantly affect the host metabolism and therefore enabled the evolutions of the \textit{C13} and \textit{GLU} ALE experiments to follow a significantly similar track.
+
+The \textit{pykF} genomic region is enriched in the \textit{42C} and \textit{GLU} ALE experiments. These experiments have very similar conditions beyond their sample temperatures. Mutations in \textit{pykF} have in fact been associated with enabling an increase in uptake of glucose by reducing or disabling the metabolism of phosphoenolpyruvate to pyruvate \cite{Woods13062006, 10.1371/journal.pgen.1001164, Blank25022014}. This fitness benefit is likely enabled by the fact that both experiments use M9 glucose minimal media, therefore providing an abundance of glucose to the populations.
+
+\section{Customized Data Mining}
+It is not the goal of the ALE Analytics platform to implement within its framework all possible data mining investigations, though we do understand the importance of exploring the data using diverse investigations. We've therefore implemented an \textit{export} feature that enables users to extract all the samples and their mutations from one or more ALE experiments. Investigators are than free to implement data mining protocols of their choosing. We've used this feature to extract the experiments used in the evaluation section and implement a data mining protocol that explores the topology of different types of mutations contained within these experiments.
+\begin{figure}[H]
+  \caption{A histogram of all mutations of evaluation ALE experiments.}
+  \centering
+  \includegraphics[width=0.9\textwidth]{all_muts_topo.png}
+  \label{fig:all_muts_topo}
+\end{figure}
+\begin{figure}[H]
+  \caption{A histogram of all SNPs of evaluation ALE experiments.}
+  \centering
+  \includegraphics[width=0.9\textwidth]{all_snps_topo.png}
+  \label{fig:all_snps_topo}
+\end{figure}
+\begin{figure}[H]
+  \caption{A histogram of all mobile insertion elements of evaluation ALE experiments.}
+  \centering
+  \includegraphics[width=0.9\textwidth]{all_mobs_topo.png}
+  \label{fig:all_mobs_topo}
+\end{figure}
+\begin{figure}[H]
+  \caption{A histogram of all small insertion elements of evaluation ALE experiments.}
+  \centering
+  \includegraphics[width=0.9\textwidth]{all_ins_topo.png}
+  \label{fig:all_ins_topo}
+\end{figure}
+\begin{figure}[H]
+  \caption{A histogram of all deletions of evaluation ALE experiments.}
+  \centering
+  \includegraphics[width=0.9\textwidth]{all_dels_topo.png}
+  \label{fig:all_dels_topo}
+\end{figure}
+
+% This type of investigation enables users to quickly where mutation hotspots exists. For instance, in \ref{fig:all_muts_topo}, we can see there exists a mutation hotspot involving all ALE experiments at approximately 4.4MB. 
+\chapter{Summary and Conclusion}
+%This type of reporting has been automated in ALE Analytics as the \textit{Mutations} report. This automated report generation along with automated analysis implemented within this platform can save experimentalists weeks of time in manually organizing mutational data and avoid human error in finding significant mutations. Additionally, experimentalists can now expand their ALE experiment sample sets to gain higher mutational resolution in their evolutions beyond any previous limit imposed by the time necessary to organize such data.
+\begin{itemize}
+\item Review how this project is currently enabling Big Data to Knowledge.
+\item Review the fundamental challenges in the startup of this project and how we've solved them.
+\item Review the current state of the project and mutation
+\item Review future direction enabled by automation and report generation
+\begin{itemize}
+\item more samples
+\item samples to be populations
+\end{itemize}
+\item Give summary on the unification of methodologies for finding key mutations
+\item Review new metadata to include for better experiment characterization
+\begin{itemize}
+\item fitness data
+\item gene functional data and experimental conditions
+\end{itemize}
+\end{itemize}
 
 %% APPENDIX
 \appendix
