@@ -318,7 +318,7 @@
     % Page # should be 0.5" above bottom, or 1.25-0.5=0.75" below the end of text.
     \setlength{\footskip}{0.75in}
     \setlength{\headheight}{0.5in} % page # should be 0.5" below top of page.
-    \setlength{\headsep}{0.5in}   % total 1 " top margin
+    \setlength{\headsep}{0.375in}   % total 1 " top margin
 \fi
 % See ftp://ftp.tex.ac.uk/tex-archive/macros/latex/contrib/geometry/geometry.pdf
 % for mappings from OGS to geometry package.
